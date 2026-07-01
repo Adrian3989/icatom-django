@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block title %}Historial — ICATOM{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="fw-bold mb-0">
+        <i class="bi bi-clock-history text-success"></i> Historial de Diagnósticos
+    </h4>
+    <a href="{% url 'nuevo_diagnostico' %}" class="btn btn-primary btn-sm">
+        <i class="bi bi-camera"></i> Nuevo Diagnóstico
+    </a>
+</div>
+
+<!-- FILTROS -->
+<div class="card mb-4">
+    <div class="card-body py-3">
+        <form method="GET" class="row g-2 align-items-end">
+            <div class="col-md-3">
+                <label class="form-label small fw-semibold mb-1">Enfermedad</label>
+                <input type="text" name="enfermedad" class="form-control form-control-sm"
+                       placeholder="Buscar por enfermedad..."
+                       value="{{ request.GET.enfermedad }}">
+            </div>
+            <div class="col-md-2">
+                <label class="form-label small fw-semibold mb-1">Sector</label>
+                <select name="sector" class="form-select form-select-sm">
+                    <option value="">— Todos —</option>
+                    {% for sector in sectores %}
+                    <option value="{{ sector.id }}"
+                        {% if request.GET.sector == sector.id|stringformat:"s" %}selected{% endif %}>
+                        {{ sector.nombre }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label small fw-semibold mb-1">Desde</label>
+                <input type="date" name="fecha_desde" class="form-control form-control-sm"
+                       value="{{ request.GET.fecha_desde }}">
+            </div>
+            <div class="col-md-2">
+                <label class="form-label small fw-semibold mb-1">Hasta</label>
+                <input type="date" name="fecha_hasta" class="form-control form-control-sm"
+                       value="{{ request.GET.fecha_hasta }}">
+            </div>
+            <div class="col-md-3 d-flex gap-2">
+                <button type="submit" class="btn btn-primary btn-sm flex-grow-1">
+                    <i class="bi bi-search"></i> Filtrar
+                </button>
+                <a href="{% url 'historial' %}" class="btn btn-outline-secondary btn-sm flex-grow-1">
+                    <i class="bi bi-x"></i> Limpiar
+                </a>
+                <a href="{% url 'exportar_pdf' %}?enfermedad={{ request.GET.enfermedad }}&sector={{ request.GET.sector }}&fecha_desde={{ request.GET.fecha_desde }}&fecha_hasta={{ request.GET.fecha_hasta }}" class="btn btn-success btn-sm flex-grow-1">
+                    <i class="bi bi-file-pdf"></i> PDF
+                </a>
+                <a href="{% url 'exportar_excel' %}?enfermedad={{ request.GET.enfermedad }}&sector={{ request.GET.sector }}&fecha_desde={{ request.GET.fecha_desde }}&fecha_hasta={{ request.GET.fecha_hasta }}" class="btn btn-info btn-sm flex-grow-1">
+                    <i class="bi bi-file-excel"></i> Excel
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- TABLA -->
+<div class="card">
+    <div class="card-body p-0">
+        {% if diagnosticos %}
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>#</th>
+                        <th>Imagen</th>
+                        <th>Enfermedad</th>
+                        <th>Severidad</th>
+                        <th>Sector</th>
+                        {% if user.rol != 'trabajador' %}
+                        <th>Usuario</th>
+                        {% endif %}
+                        <th>Fecha</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for d in diagnosticos %}
+                    <tr>
+                        <td class="text-muted small align-middle">{{ d.id }}</td>
+                        <td class="align-middle">
+                            <img src="{{ d.imagen.url }}" alt="img"
+                                 style="width:48px; height:48px; object-fit:cover; border-radius:8px;">
+                        </td>
+                        <td class="fw-semibold align-middle">
+                            {{ d.enfermedad.nombre|default:"—" }}
+                        </td>
+                        <td class="align-middle">
+                            {% if d.severidad == 'leve' %}
+                                <span class="badge badge-leve px-2 py-1">Leve</span>
+                            {% elif d.severidad == 'moderado' %}
+                                <span class="badge badge-moderado px-2 py-1">Moderado</span>
+                            {% elif d.severidad == 'grave' %}
+                                <span class="badge badge-grave px-2 py-1">Grave</span>
+                            {% else %}
+                                <span class="badge bg-secondary px-2 py-1">—</span>
+                            {% endif %}
+                        </td>
+                        <td class="align-middle text-muted small">
+                            {{ d.sector.nombre|default:"—" }}
+                        </td>
+                        {% if user.rol != 'trabajador' %}
+                        <td class="align-middle text-muted small">
+                            {{ d.usuario.nombre }}
+                        </td>
+                        {% endif %}
+                        <td class="align-middle text-muted small">
+                            {{ d.fecha_consulta|date:"d/m/Y H:i" }}
+                        </td>
+                        <td class="align-middle">
+                            <a href="{% url 'detalle_diagnostico' d.id %}"
+                               class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="text-center py-5 text-muted">
+            <i class="bi bi-inbox" style="font-size:2.5rem;"></i>
+            <p class="mt-2">No se encontraron diagnósticos.</p>
+            <a href="{% url 'nuevo_diagnostico' %}" class="btn btn-primary btn-sm">
+                <i class="bi bi-camera"></i> Hacer primer diagnóstico
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

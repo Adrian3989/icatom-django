@@ -1,0 +1,166 @@
+{% extends 'base.html' %}
+
+{% block title %}Nuevo Diagnóstico — ICATOM{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="fw-bold mb-0">
+        <i class="bi bi-camera text-success"></i> Nuevo Diagnóstico
+    </h4>
+    <a href="{% url 'historial' %}" class="btn btn-outline-primary btn-sm">
+        <i class="bi bi-clock-history"></i> Ver Historial
+    </a>
+</div>
+
+<div class="row g-4">
+    <!-- FORMULARIO -->
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-header bg-white py-3">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-upload text-success"></i> Subir imagen de la planta
+                </h6>
+            </div>
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data" id="formDiagnostico">
+                    {% csrf_token %}
+
+                    <!-- SECTOR -->
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">
+                            <i class="bi bi-geo-alt"></i> Sector del fundo
+                        </label>
+                        <select name="sector" class="form-select" required>
+                            <option value="">— Seleccionar sector —</option>
+                            {% for sector in sectores %}
+                            <option value="{{ sector.id }}">{{ sector.nombre }}</option>
+                            {% endfor %}
+                        </select>
+                        {% if not sectores %}
+                        <div class="alert alert-warning mt-2 py-2 small">
+                            <i class="bi bi-exclamation-triangle"></i>
+                            No hay sectores registrados. 
+                            <a href="/admin/" target="_blank">Agregar desde el admin</a>.
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- IMAGEN -->
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">
+                            <i class="bi bi-image"></i> Fotografía de la planta
+                        </label>
+                        <div class="border rounded-3 p-3 text-center" 
+                             style="border-style: dashed !important; cursor:pointer; background:#fafafa;"
+                             onclick="document.getElementById('inputImagen').click()">
+                            <div id="previewContainer">
+                                <i class="bi bi-cloud-arrow-up" style="font-size:2.5rem; color:#aaa;"></i>
+                                <p class="text-muted small mt-2 mb-0">
+                                    Toca aquí para subir una foto<br>
+                                    <span class="text-muted" style="font-size:0.75rem;">JPG, PNG — máx. 10MB</span>
+                                </p>
+                            </div>
+                            <img id="previewImagen" src="#" alt="Preview" 
+                                 class="img-fluid rounded d-none" style="max-height:200px;">
+                        </div>
+                        <input type="file" name="imagen" id="inputImagen" 
+                               accept="image/*" capture="environment"
+                               class="d-none" required>
+                    </div>
+
+                    <!-- BOTÓN -->
+                    <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold" id="btnDiagnosticar">
+                        <i class="bi bi-stars"></i> Diagnosticar con IA
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- INSTRUCCIONES -->
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-header bg-white py-3">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-info-circle text-success"></i> ¿Cómo obtener un buen diagnóstico?
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="d-flex flex-column gap-3">
+                    <div class="d-flex gap-3 align-items-start">
+                        <div style="background:#e8f5e9; border-radius:8px; padding:10px; min-width:42px; text-align:center;">
+                            <i class="bi bi-sun" style="color:#2e7d32; font-size:1.2rem;"></i>
+                        </div>
+                        <div>
+                            <div class="fw-semibold small">Buena iluminación</div>
+                            <div class="text-muted small">Fotografía con luz natural, evita sombras sobre la hoja.</div>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-3 align-items-start">
+                        <div style="background:#e8f5e9; border-radius:8px; padding:10px; min-width:42px; text-align:center;">
+                            <i class="bi bi-zoom-in" style="color:#2e7d32; font-size:1.2rem;"></i>
+                        </div>
+                        <div>
+                            <div class="fw-semibold small">Acércate a la planta</div>
+                            <div class="text-muted small">Captura claramente las hojas, frutos o tallos afectados.</div>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-3 align-items-start">
+                        <div style="background:#e8f5e9; border-radius:8px; padding:10px; min-width:42px; text-align:center;">
+                            <i class="bi bi-camera2" style="color:#2e7d32; font-size:1.2rem;"></i>
+                        </div>
+                        <div>
+                            <div class="fw-semibold small">Imagen enfocada</div>
+                            <div class="text-muted small">Asegúrate que la foto no esté borrosa antes de subir.</div>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-3 align-items-start">
+                        <div style="background:#fff3e0; border-radius:8px; padding:10px; min-width:42px; text-align:center;">
+                            <i class="bi bi-exclamation-triangle" style="color:#e65100; font-size:1.2rem;"></i>
+                        </div>
+                        <div>
+                            <div class="fw-semibold small">Solo plantas de tomate</div>
+                            <div class="text-muted small">El sistema está entrenado exclusivamente para cultivos de tomate.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- LOADING -->
+                <div id="loadingDiag" class="text-center mt-4 d-none">
+                    <div class="spinner-border text-success" role="status"></div>
+                    <p class="text-muted small mt-2">
+                        Analizando imagen con IA...<br>
+                        <span style="font-size:0.75rem;">Esto puede tomar hasta 15 segundos</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Preview de imagen
+    document.getElementById('inputImagen').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(ev) {
+                document.getElementById('previewImagen').src = ev.target.result;
+                document.getElementById('previewImagen').classList.remove('d-none');
+                document.getElementById('previewContainer').classList.add('d-none');
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    // Loading al enviar
+    document.getElementById('formDiagnostico').addEventListener('submit', function() {
+        document.getElementById('btnDiagnosticar').disabled = true;
+        document.getElementById('btnDiagnosticar').innerHTML = 
+            '<span class="spinner-border spinner-border-sm"></span> Analizando...';
+        document.getElementById('loadingDiag').classList.remove('d-none');
+    });
+</script>
+{% endblock %}

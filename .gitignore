@@ -1,0 +1,10 @@
+.env
+venv/
+db.sqlite3
+*.pyc
+__pycache__/
+*.egg-info/
+media/
+.DS_Store
+.vscode/
+*.log

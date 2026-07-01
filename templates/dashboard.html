@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard — ICATOM{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="fw-bold mb-0">
+        <i class="bi bi-speedometer2 text-success"></i> Dashboard
+    </h4>
+    <a href="{% url 'nuevo_diagnostico' %}" class="btn btn-primary">
+        <i class="bi bi-camera"></i> Nuevo Diagnóstico
+    </a>
+</div>
+
+<!-- TARJETAS RESUMEN -->
+<div class="row g-3 mb-4">
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body d-flex align-items-center gap-3">
+                <div style="background:#e8f5e9; border-radius:12px; padding:14px;">
+                    <i class="bi bi-clipboard2-pulse" style="font-size:1.8rem; color:#2e7d32;"></i>
+                </div>
+                <div>
+                    <div class="text-muted small">Mis diagnósticos</div>
+                    <div class="fw-bold fs-3">{{ total }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body d-flex align-items-center gap-3">
+                <div style="background:#fff3e0; border-radius:12px; padding:14px;">
+                    <i class="bi bi-person-badge" style="font-size:1.8rem; color:#e65100;"></i>
+                </div>
+                <div>
+                    <div class="text-muted small">Rol asignado</div>
+                    <div class="fw-bold fs-6">{{ user.get_rol_display }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body d-flex align-items-center gap-3">
+                <div style="background:#e3f2fd; border-radius:12px; padding:14px;">
+                    <i class="bi bi-calendar3" style="font-size:1.8rem; color:#1565c0;"></i>
+                </div>
+                <div>
+                    <div class="text-muted small">Campaña activa</div>
+                    <div class="fw-bold fs-6">Ago 2026 — Jul 2027</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MINI GRÁFICAS -->
+<div class="row g-3 mb-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-white py-2">
+                <h6 class="mb-0 fw-bold small">
+                    <i class="bi bi-graph-up text-success"></i> Top enfermedades
+                </h6>
+            </div>
+            <div class="card-body p-2">
+                <div style="max-height: 220px;">
+                    <canvas id="chartEnfermedades"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header bg-white py-2">
+                <h6 class="mb-0 fw-bold small">
+                    <i class="bi bi-pie-chart text-success"></i> Por severidad
+                </h6>
+            </div>
+            <div class="card-body p-2">
+                <div style="max-height: 220px;">
+                    <canvas id="chartSeveridad"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- DIAGNÓSTICOS RECIENTES -->
+<div class="card">
+    <div class="card-header bg-white py-3">
+        <h6 class="mb-0 fw-bold">
+            <i class="bi bi-clock-history text-success"></i> Diagnósticos Recientes
+        </h6>
+    </div>
+    <div class="card-body p-0">
+        {% if recientes %}
+        <div class="table-responsive">
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>#</th>
+                        <th>Enfermedad</th>
+                        <th>Severidad</th>
+                        <th>Sector</th>
+                        <th>Fecha</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for d in recientes %}
+                    <tr>
+                        <td class="text-muted small">{{ d.id }}</td>
+                        <td class="fw-semibold">
+                            {{ d.enfermedad.nombre|default:"—" }}
+                        </td>
+                        <td>
+                            {% if d.severidad == 'leve' %}
+                                <span class="badge badge-leve px-2 py-1">Leve</span>
+                            {% elif d.severidad == 'moderado' %}
+                                <span class="badge badge-moderado px-2 py-1">Moderado</span>
+                            {% elif d.severidad == 'grave' %}
+                                <span class="badge badge-grave px-2 py-1">Grave</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ d.sector.nombre|default:"—" }}</td>
+                        <td class="text-muted small">{{ d.fecha_consulta|date:"d/m/Y H:i" }}</td>
+                        <td>
+                            <a href="{% url 'detalle_diagnostico' d.id %}" 
+                               class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% else %}
+        <div class="text-center py-5 text-muted">
+            <i class="bi bi-inbox" style="font-size:2.5rem;"></i>
+            <p class="mt-2">Aún no hay diagnósticos registrados.</p>
+            <a href="{% url 'nuevo_diagnostico' %}" class="btn btn-primary btn-sm">
+                <i class="bi bi-camera"></i> Hacer primer diagnóstico
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+    const enfermedadesData = {{ enfermedades_chart|safe }};
+    const severidadData = {{ severidad_chart|safe }};
+
+    new Chart(document.getElementById('chartEnfermedades'), {
+        type: 'bar',
+        data: {
+            labels: enfermedadesData.labels,
+            datasets: [{
+                label: 'Casos',
+                data: enfermedadesData.values,
+                backgroundColor: '#2e7d32',
+                borderColor: '#1b5e20',
+                borderWidth: 1,
+                borderRadius: 6
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true } }
+        }
+    });
+
+    new Chart(document.getElementById('chartSeveridad'), {
+        type: 'doughnut',
+        data: {
+            labels: severidadData.labels,
+            datasets: [{
+                data: severidadData.values,
+                backgroundColor: ['#c8e6c9', '#fff3e0', '#ffcdd2'],
+                borderColor: '#fff',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: { legend: { position: 'bottom' } }
+        }
+    });
+</script>
+{% endblock %}

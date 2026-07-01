@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block title %}Diagnóstico #{{ diag.id }} — ICATOM{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h4 class="fw-bold mb-0">
+        <i class="bi bi-clipboard2-pulse text-success"></i> Resultado del Diagnóstico
+    </h4>
+    <div class="d-flex gap-2">
+        <a href="{% url 'nuevo_diagnostico' %}" class="btn btn-primary btn-sm">
+            <i class="bi bi-camera"></i> Nuevo
+        </a>
+        <a href="{% url 'historial' %}" class="btn btn-outline-primary btn-sm">
+            <i class="bi bi-clock-history"></i> Historial
+        </a>
+    </div>
+</div>
+
+<!-- ALERTA CONFIANZA BAJA -->
+{% if diag.confianza_ia < 0.5 %}
+<div class="alert alert-warning d-flex align-items-center gap-2 mb-4">
+    <i class="bi bi-exclamation-triangle-fill fs-5"></i>
+    <div>
+        <strong>Confianza baja en el diagnóstico.</strong>
+        Se recomienda consultar con el ingeniero agrónomo para confirmar.
+    </div>
+</div>
+{% endif %}
+
+<div class="row g-4">
+
+    <!-- IMAGEN -->
+    <div class="col-md-5">
+        <div class="card h-100">
+            <div class="card-header bg-white py-3">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-image text-success"></i> Imagen analizada
+                </h6>
+            </div>
+            <div class="card-body text-center">
+                <img src="{{ diag.imagen.url }}" alt="Planta diagnosticada"
+                     class="img-fluid rounded-3" style="max-height:320px; object-fit:cover;">
+                <div class="mt-3 text-muted small">
+                    <i class="bi bi-calendar3"></i>
+                    {{ diag.fecha_consulta|date:"d/m/Y H:i" }}
+                    &nbsp;|&nbsp;
+                    <i class="bi bi-geo-alt"></i>
+                    {{ diag.sector.nombre|default:"—" }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RESULTADO -->
+    <div class="col-md-7">
+        <div class="card h-100">
+            <div class="card-header bg-white py-3">
+                <h6 class="mb-0 fw-bold">
+                    <i class="bi bi-stars text-success"></i> Resultado de la IA
+                </h6>
+            </div>
+            <div class="card-body">
+
+                <!-- ENFERMEDAD Y SEVERIDAD -->
+                <div class="d-flex align-items-center justify-content-between mb-3">
+                    <div>
+                        <div class="text-muted small">Enfermedad detectada</div>
+                        <div class="fw-bold fs-5">
+                            {{ diag.enfermedad.nombre|default:"No determinada" }}
+                        </div>
+                    </div>
+                    <div class="text-end">
+                        {% if diag.severidad == 'leve' %}
+                            <span class="badge badge-leve px-3 py-2 fs-6">🟢 Leve</span>
+                        {% elif diag.severidad == 'moderado' %}
+                            <span class="badge badge-moderado px-3 py-2 fs-6">🟡 Moderado</span>
+                        {% elif diag.severidad == 'grave' %}
+                            <span class="badge badge-grave px-3 py-2 fs-6">🔴 Grave</span>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- SÍNTOMAS -->
+                <div class="mb-3">
+                    <div class="fw-semibold mb-1">
+                        <i class="bi bi-search text-success"></i> Síntomas observados
+                    </div>
+                    <p class="text-muted small mb-0">{{ diag.sintomas|default:"—" }}</p>
+                </div>
+
+                <!-- TRATAMIENTO -->
+                <div class="p-3 rounded-3" style="background:#e8f5e9;">
+                    <div class="fw-semibold mb-1" style="color:#1b5e20;">
+                        <i class="bi bi-capsule"></i> Tratamiento recomendado
+                    </div>
+                    <p class="small mb-0" style="color:#2e7d32;">
+                        {{ diag.tratamiento|default:"—" }}
+                    </p>
+                </div>
+
+                <!-- DATOS EXTRA -->
+                <div class="mt-3 d-flex gap-2 flex-wrap">
+                    <span class="badge bg-light text-dark border">
+                        <i class="bi bi-person"></i> {{ diag.usuario.nombre }}
+                    </span>
+                    <span class="badge bg-light text-dark border">
+                        <i class="bi bi-geo-alt"></i> {{ diag.sector.nombre|default:"—" }}
+                    </span>
+                    <span class="badge bg-light text-dark border">
+                        <i class="bi bi-calendar3"></i> {{ diag.fecha_consulta|date:"d/m/Y" }}
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
