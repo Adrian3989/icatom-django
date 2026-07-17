@@ -1,0 +1,311 @@
+[
+{
+  "model": "diagnostico.usuario",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$mnbcTu5xflAe6tMSSOAPlO$YVKPvzWVugEYNvmi5WWqsgQd2fz1hi6MsHF/Nyc66M0=",
+    "last_login": "2026-07-02T04:28:09.216Z",
+    "is_superuser": true,
+    "nombre": "Administrador",
+    "email": "admin@icatom.com",
+    "rol": "administrador",
+    "activo": true,
+    "fecha_registro": "2026-05-28T03:35:47.284Z",
+    "is_staff": true,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "diagnostico.usuario",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$yL8yiBju0VQi5sWhrsS7Jd$wMTDMF4bCFs4H2yN/XqHYlse7YcX/JVX2T2AVHQMX2g=",
+    "last_login": "2026-07-01T03:01:45.420Z",
+    "is_superuser": false,
+    "nombre": "Alejandro Raúl Moquillaza Ventura ",
+    "email": "raulito@icatom.com",
+    "rol": "agronomo",
+    "activo": true,
+    "fecha_registro": "2026-06-29T00:40:51.671Z",
+    "is_staff": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "diagnostico.usuario",
+  "fields": {
+    "password": "pbkdf2_sha256$600000$JqAtxeBIiiHfgCi5Q4gYVM$H6rIcms6QQLw/tkSXiFCg3WKvIqU/viLc//fM4rGvOA=",
+    "last_login": "2026-07-01T02:58:50.376Z",
+    "is_superuser": false,
+    "nombre": "Víctor Caballero",
+    "email": "curwen@icatom.com",
+    "rol": "trabajador",
+    "activo": true,
+    "fecha_registro": "2026-06-29T00:45:31.537Z",
+    "is_staff": false,
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "diagnostico.sector",
+  "pk": 1,
+  "fields": {
+    "nombre": "Sector A — Norte",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "diagnostico.sector",
+  "pk": 2,
+  "fields": {
+    "nombre": "Sector B — Sur",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "diagnostico.sector",
+  "pk": 3,
+  "fields": {
+    "nombre": "Sector C — Centro",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "diagnostico.enfermedad",
+  "pk": 2,
+  "fields": {
+    "nombre": "Pudrición Apical (Blossom End Rot)",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "diagnostico.enfermedad",
+  "pk": 3,
+  "fields": {
+    "nombre": "Antracnosis (Colletotrichum coccodes)",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "diagnostico.enfermedad",
+  "pk": 4,
+  "fields": {
+    "nombre": "Tizón Temprano (Alternaria solani)",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "diagnostico.enfermedad",
+  "pk": 5,
+  "fields": {
+    "nombre": "Oídio (Powdery Mildew)",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "diagnostico.enfermedad",
+  "pk": 6,
+  "fields": {
+    "nombre": "Tizón Tardío (Late Blight)",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "diagnostico.enfermedad",
+  "pk": 7,
+  "fields": {
+    "nombre": "Moho de la hoja (Passalora fulva)",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "diagnostico.enfermedad",
+  "pk": 8,
+  "fields": {
+    "nombre": "Tizón Tardío (Phytophthora infestans)",
+    "descripcion": "",
+    "activo": true
+  }
+},
+{
+  "model": "diagnostico.diagnostico",
+  "pk": 10,
+  "fields": {
+    "usuario": [
+      "admin@icatom.com"
+    ],
+    "sector": 1,
+    "enfermedad": 2,
+    "imagen": "diagnosticos/anthracnose-tomato-1583845437_LOCu6s7.jpg",
+    "severidad": "grave",
+    "sintomas": "La imagen muestra un tomate con una gran mancha oscura, hundida y acuosa en el extremo inferior o distal del fruto (opuesto al tallo). Esta mancha es de color marrón oscuro a negro y la piel del fruto en esa área parece correosa y afectada. Es una característica distintiva de la Pudrición Apical.",
+    "tratamiento": "La Pudrición Apical es un trastorno fisiológico causado principalmente por una deficiencia de calcio en el fruto, a menudo exacerbada por un manejo inadecuado del agua o fluctuaciones en la humedad del suelo. El tratamiento se enfoca en la prevención y el manejo cultural:\n1.  **Riego Consistente:** Asegurar un riego regular y uniforme, evitando períodos de sequía seguidos de riegos abundantes. Mantener la humedad del suelo constante es crucial.\n2.  **Manejo del Calcio en el Suelo:** Realizar análisis de suelo para determinar los niveles de calcio. Si es deficiente, aplicar enmiendas como nitrato de calcio o yeso agrícola. Asegurar un pH de suelo adecuado (entre 6.0 y 6.8) para una óptima absorción de calcio.\n3.  **Fertilización Equilibrada:** Evitar el exceso de fertilizantes nitrogenados, que pueden estimular un crecimiento vegetativo rápido y diluir el calcio disponible en la planta. Mantener un equilibrio con potasio y magnesio.\n4.  **Acolchado (Mulch):** Utilizar acolchado alrededor de la base de las plantas para ayudar a conservar la humedad del suelo, moderar la temperatura y reducir las fluctuaciones extremas.\n5.  **Retirar Frutos Afectados:** Quitar los frutos severamente afectados para que la planta concentre sus recursos en el desarrollo de frutos sanos.",
+    "respuesta_ia": "{'es_valida': True, 'enfermedad': 'Pudrición Apical (Blossom End Rot)', 'severidad': 'grave', 'confianza': 0.95, 'sintomas': 'La imagen muestra un tomate con una gran mancha oscura, hundida y acuosa en el extremo inferior o distal del fruto (opuesto al tallo). Esta mancha es de color marrón oscuro a negro y la piel del fruto en esa área parece correosa y afectada. Es una característica distintiva de la Pudrición Apical.', 'tratamiento': 'La Pudrición Apical es un trastorno fisiológico causado principalmente por una deficiencia de calcio en el fruto, a menudo exacerbada por un manejo inadecuado del agua o fluctuaciones en la humedad del suelo. El tratamiento se enfoca en la prevención y el manejo cultural:\\n1.  **Riego Consistente:** Asegurar un riego regular y uniforme, evitando períodos de sequía seguidos de riegos abundantes. Mantener la humedad del suelo constante es crucial.\\n2.  **Manejo del Calcio en el Suelo:** Realizar análisis de suelo para determinar los niveles de calcio. Si es deficiente, aplicar enmiendas como nitrato de calcio o yeso agrícola. Asegurar un pH de suelo adecuado (entre 6.0 y 6.8) para una óptima absorción de calcio.\\n3.  **Fertilización Equilibrada:** Evitar el exceso de fertilizantes nitrogenados, que pueden estimular un crecimiento vegetativo rápido y diluir el calcio disponible en la planta. Mantener un equilibrio con potasio y magnesio.\\n4.  **Acolchado (Mulch):** Utilizar acolchado alrededor de la base de las plantas para ayudar a conservar la humedad del suelo, moderar la temperatura y reducir las fluctuaciones extremas.\\n5.  **Retirar Frutos Afectados:** Quitar los frutos severamente afectados para que la planta concentre sus recursos en el desarrollo de frutos sanos.'}",
+    "confianza_ia": 0.95,
+    "fecha_consulta": "2026-06-26T03:37:29.897Z",
+    "es_valida": true
+  }
+},
+{
+  "model": "diagnostico.diagnostico",
+  "pk": 11,
+  "fields": {
+    "usuario": [
+      "admin@icatom.com"
+    ],
+    "sector": 2,
+    "enfermedad": 3,
+    "imagen": "diagnosticos/images.jfif",
+    "severidad": "grave",
+    "sintomas": "Los frutos de tomate, en etapa de maduración, presentan múltiples lesiones hundidas, de forma irregular a circular, de color marrón oscuro a negro. Estas lesiones son prominentes y cubren grandes porciones de la superficie de varios frutos. Además, se observa tejido foliar adyacente con signos de necrosis y desecación.",
+    "tratamiento": "Para la antracnosis en tomate, se recomienda un enfoque integrado:\n1.  **Medidas culturales:** Eliminar y destruir inmediatamente todos los frutos y restos vegetales infectados para reducir la fuente de inóculo. Mejorar la circulación del aire mediante podas adecuadas y espaciamiento entre plantas. Evitar el riego por aspersión, optando por riego por goteo para mantener el follaje seco. Implementar una rotación de cultivos con especies no susceptibles para romper el ciclo de la enfermedad.\n2.  **Control químico:** Aplicar fungicidas preventivos y curativos. Productos como clorotalonil, mancozeb, o fungicidas a base de cobre pueden ser efectivos para el control preventivo. Para el control curativo y sistémico, se pueden usar fungicidas del grupo de las estrobilurinas (por ejemplo, azoxistrobina, piraclostrobin) o triazoles (como difenoconazol). Es crucial seguir las indicaciones del fabricante respecto a la dosis, frecuencia de aplicación y el periodo de seguridad (PHI) antes de la cosecha. Comenzar las aplicaciones al inicio del desarrollo del fruto, si la enfermedad es un problema recurrente.\n3.  **Prevención:** Utilizar semillas y plántulas certificadas y sanas. Monitorear constantemente el cultivo para detectar los primeros síntomas y actuar rápidamente.",
+    "respuesta_ia": "{'es_valida': True, 'enfermedad': 'Antracnosis (Colletotrichum coccodes)', 'severidad': 'grave', 'confianza': 0.9, 'sintomas': 'Los frutos de tomate, en etapa de maduración, presentan múltiples lesiones hundidas, de forma irregular a circular, de color marrón oscuro a negro. Estas lesiones son prominentes y cubren grandes porciones de la superficie de varios frutos. Además, se observa tejido foliar adyacente con signos de necrosis y desecación.', 'tratamiento': 'Para la antracnosis en tomate, se recomienda un enfoque integrado:\\n1.  **Medidas culturales:** Eliminar y destruir inmediatamente todos los frutos y restos vegetales infectados para reducir la fuente de inóculo. Mejorar la circulación del aire mediante podas adecuadas y espaciamiento entre plantas. Evitar el riego por aspersión, optando por riego por goteo para mantener el follaje seco. Implementar una rotación de cultivos con especies no susceptibles para romper el ciclo de la enfermedad.\\n2.  **Control químico:** Aplicar fungicidas preventivos y curativos. Productos como clorotalonil, mancozeb, o fungicidas a base de cobre pueden ser efectivos para el control preventivo. Para el control curativo y sistémico, se pueden usar fungicidas del grupo de las estrobilurinas (por ejemplo, azoxistrobina, piraclostrobin) o triazoles (como difenoconazol). Es crucial seguir las indicaciones del fabricante respecto a la dosis, frecuencia de aplicación y el periodo de seguridad (PHI) antes de la cosecha. Comenzar las aplicaciones al inicio del desarrollo del fruto, si la enfermedad es un problema recurrente.\\n3.  **Prevención:** Utilizar semillas y plántulas certificadas y sanas. Monitorear constantemente el cultivo para detectar los primeros síntomas y actuar rápidamente.'}",
+    "confianza_ia": 0.9,
+    "fecha_consulta": "2026-07-01T02:43:22.009Z",
+    "es_valida": true
+  }
+},
+{
+  "model": "diagnostico.diagnostico",
+  "pk": 12,
+  "fields": {
+    "usuario": [
+      "admin@icatom.com"
+    ],
+    "sector": 3,
+    "enfermedad": 4,
+    "imagen": "diagnosticos/images_1.jfif",
+    "severidad": "grave",
+    "sintomas": "La imagen muestra una hoja de tomate con numerosas manchas necróticas de color marrón oscuro a negro, de forma irregular a circular, distribuidas por toda la superficie de la hoja. Muchas de estas manchas presentan un halo amarillento alrededor y algunas de las lesiones más grandes muestran anillos concéntricos, lo que le da un aspecto de 'diana' o 'tiro al blanco'. También se observa un amarillamiento generalizado de la hoja alrededor de las manchas, indicando un daño considerable al tejido foliar.",
+    "tratamiento": "Dado que la severidad es grave, es crucial actuar rápidamente para controlar la propagación y proteger el resto de la planta y los frutos. Se recomienda un enfoque integrado:\n\n1.  **Prácticas culturales:**\n    *   **Eliminación de hojas afectadas:** Retire y destruya las hojas y restos de plantas infectadas para reducir la fuente de inóculo. No las composte.\n    *   **Rotación de cultivos:** Evite plantar tomates u otros cultivos solanáceos (papas, pimientos, berenjenas) en el mismo suelo durante al menos 2-3 años.\n    *   **Manejo del riego:** Riegue por la mañana y evite el riego por aspersión para reducir la humedad foliar prolongada, que favorece el hongo. Use riego por goteo si es posible.\n    *   **Poda y aireación:** Podar las hojas más bajas y eliminar los brotes chupones para mejorar la circulación del aire dentro del dosel y reducir la humedad.\n    *   **Distanciamiento:** Asegure un espaciamiento adecuado entre las plantas para promover una buena ventilación.\n\n2.  **Control químico (fungicidas):**\n    *   Aplique fungicidas protectores y/o sistémicos tan pronto como aparezcan los primeros síntomas. Dada la severidad, se necesitará una aplicación rápida.\n    *   **Fungicidas recomendados:**\n        *   **Protectores:** Clorotalonil, Mancozeb, Cobre (hidróxido de cobre, oxicloruro de cobre). Estos deben aplicarse preventivamente o al inicio de la enfermedad y de forma regular siguiendo las indicaciones de la etiqueta.\n        *   **Sistémicos/curativos:** Azoxystrobin, Difenoconazole, Boscalid + Pyraclostrobin. Estos fungicidas pueden ayudar a controlar infecciones existentes.\n    *   **Rotación de ingredientes activos:** Para evitar el desarrollo de resistencia, alterne fungicidas con diferentes modos de acción.\n    *   **Aplicación:** Siga estrictamente las dosis y los intervalos de seguridad (periodo de reentrada y precosecha) indicados en la etiqueta del producto. Asegúrese de cubrir bien el envés y el haz de las hojas.",
+    "respuesta_ia": "{'es_valida': True, 'enfermedad': 'Tizón Temprano (Alternaria solani)', 'severidad': 'grave', 'confianza': 0.95, 'sintomas': \"La imagen muestra una hoja de tomate con numerosas manchas necróticas de color marrón oscuro a negro, de forma irregular a circular, distribuidas por toda la superficie de la hoja. Muchas de estas manchas presentan un halo amarillento alrededor y algunas de las lesiones más grandes muestran anillos concéntricos, lo que le da un aspecto de 'diana' o 'tiro al blanco'. También se observa un amarillamiento generalizado de la hoja alrededor de las manchas, indicando un daño considerable al tejido foliar.\", 'tratamiento': 'Dado que la severidad es grave, es crucial actuar rápidamente para controlar la propagación y proteger el resto de la planta y los frutos. Se recomienda un enfoque integrado:\\n\\n1.  **Prácticas culturales:**\\n    *   **Eliminación de hojas afectadas:** Retire y destruya las hojas y restos de plantas infectadas para reducir la fuente de inóculo. No las composte.\\n    *   **Rotación de cultivos:** Evite plantar tomates u otros cultivos solanáceos (papas, pimientos, berenjenas) en el mismo suelo durante al menos 2-3 años.\\n    *   **Manejo del riego:** Riegue por la mañana y evite el riego por aspersión para reducir la humedad foliar prolongada, que favorece el hongo. Use riego por goteo si es posible.\\n    *   **Poda y aireación:** Podar las hojas más bajas y eliminar los brotes chupones para mejorar la circulación del aire dentro del dosel y reducir la humedad.\\n    *   **Distanciamiento:** Asegure un espaciamiento adecuado entre las plantas para promover una buena ventilación.\\n\\n2.  **Control químico (fungicidas):**\\n    *   Aplique fungicidas protectores y/o sistémicos tan pronto como aparezcan los primeros síntomas. Dada la severidad, se necesitará una aplicación rápida.\\n    *   **Fungicidas recomendados:**\\n        *   **Protectores:** Clorotalonil, Mancozeb, Cobre (hidróxido de cobre, oxicloruro de cobre). Estos deben aplicarse preventivamente o al inicio de la enfermedad y de forma regular siguiendo las indicaciones de la etiqueta.\\n        *   **Sistémicos/curativos:** Azoxystrobin, Difenoconazole, Boscalid + Pyraclostrobin. Estos fungicidas pueden ayudar a controlar infecciones existentes.\\n    *   **Rotación de ingredientes activos:** Para evitar el desarrollo de resistencia, alterne fungicidas con diferentes modos de acción.\\n    *   **Aplicación:** Siga estrictamente las dosis y los intervalos de seguridad (periodo de reentrada y precosecha) indicados en la etiqueta del producto. Asegúrese de cubrir bien el envés y el haz de las hojas.'}",
+    "confianza_ia": 0.95,
+    "fecha_consulta": "2026-07-01T02:46:25.945Z",
+    "es_valida": true
+  }
+},
+{
+  "model": "diagnostico.diagnostico",
+  "pk": 13,
+  "fields": {
+    "usuario": [
+      "admin@icatom.com"
+    ],
+    "sector": 2,
+    "enfermedad": 2,
+    "imagen": "diagnosticos/necrosis-apical-tomate-culo-negro-infocampo.jpg",
+    "severidad": "moderado",
+    "sintomas": "Los frutos de tomate, tanto maduros como inmaduros, muestran lesiones hundidas, acuosas y de color marrón oscuro a negro en el extremo opuesto al tallo (ápice). Estas manchas se agrandan y se vuelven correosas o apergaminadas con el tiempo, haciendo que los frutos no sean aptos para el consumo. Se observa en varios frutos simultáneamente.",
+    "tratamiento": "La pudrición apical es un trastorno fisiológico, no una enfermedad patógena, causada principalmente por una deficiencia localizada de calcio en el fruto, exacerbada por fluctuaciones en la humedad del suelo y un riego inconsistente. El tratamiento se centra en prácticas culturales:\n1.  **Riego Consistente:** Mantener un suministro de agua uniforme y constante. Evitar periodos de sequía seguidos de riegos abundantes. El mulching (acolchado) alrededor de las plantas puede ayudar a retener la humedad del suelo.\n2.  **Suministro de Calcio:** Asegurar que haya suficiente calcio disponible en el suelo. Realizar un análisis de suelo puede ser útil. Si hay deficiencia, se pueden añadir enmiendas como yeso agrícola o cáscaras de huevo trituradas al suelo, aunque estas últimas actúan lentamente. Los fertilizantes foliares de calcio pueden ofrecer una solución a corto plazo, pero no corrigen el problema de raíz.\n3.  **Evitar Exceso de Nitrógeno:** Un exceso de fertilizantes nitrogenados puede promover un crecimiento vegetativo rápido y desequilibrado, lo que dificulta la absorción y translocación de calcio a los frutos.\n4.  **pH del Suelo:** Mantener un pH del suelo óptimo (generalmente entre 6.0 y 6.8) para una buena absorción de calcio.\n5.  **Drenaje:** Asegurar un buen drenaje para evitar el encharcamiento que puede limitar la absorción de nutrientes.\n6.  **Eliminar Frutos Afectados:** Retirar los frutos con pudrición apical para permitir que la planta concentre sus recursos en el desarrollo de frutos sanos.",
+    "respuesta_ia": "{'es_valida': True, 'enfermedad': 'Pudrición Apical (Blossom End Rot)', 'severidad': 'moderado', 'confianza': 0.98, 'sintomas': 'Los frutos de tomate, tanto maduros como inmaduros, muestran lesiones hundidas, acuosas y de color marrón oscuro a negro en el extremo opuesto al tallo (ápice). Estas manchas se agrandan y se vuelven correosas o apergaminadas con el tiempo, haciendo que los frutos no sean aptos para el consumo. Se observa en varios frutos simultáneamente.', 'tratamiento': 'La pudrición apical es un trastorno fisiológico, no una enfermedad patógena, causada principalmente por una deficiencia localizada de calcio en el fruto, exacerbada por fluctuaciones en la humedad del suelo y un riego inconsistente. El tratamiento se centra en prácticas culturales:\\n1.  **Riego Consistente:** Mantener un suministro de agua uniforme y constante. Evitar periodos de sequía seguidos de riegos abundantes. El mulching (acolchado) alrededor de las plantas puede ayudar a retener la humedad del suelo.\\n2.  **Suministro de Calcio:** Asegurar que haya suficiente calcio disponible en el suelo. Realizar un análisis de suelo puede ser útil. Si hay deficiencia, se pueden añadir enmiendas como yeso agrícola o cáscaras de huevo trituradas al suelo, aunque estas últimas actúan lentamente. Los fertilizantes foliares de calcio pueden ofrecer una solución a corto plazo, pero no corrigen el problema de raíz.\\n3.  **Evitar Exceso de Nitrógeno:** Un exceso de fertilizantes nitrogenados puede promover un crecimiento vegetativo rápido y desequilibrado, lo que dificulta la absorción y translocación de calcio a los frutos.\\n4.  **pH del Suelo:** Mantener un pH del suelo óptimo (generalmente entre 6.0 y 6.8) para una buena absorción de calcio.\\n5.  **Drenaje:** Asegurar un buen drenaje para evitar el encharcamiento que puede limitar la absorción de nutrientes.\\n6.  **Eliminar Frutos Afectados:** Retirar los frutos con pudrición apical para permitir que la planta concentre sus recursos en el desarrollo de frutos sanos.'}",
+    "confianza_ia": 0.98,
+    "fecha_consulta": "2026-07-01T02:47:31.705Z",
+    "es_valida": true
+  }
+},
+{
+  "model": "diagnostico.diagnostico",
+  "pk": 14,
+  "fields": {
+    "usuario": [
+      "admin@icatom.com"
+    ],
+    "sector": 3,
+    "enfermedad": 5,
+    "imagen": "diagnosticos/images_2.jfif",
+    "severidad": "moderado",
+    "sintomas": "La imagen muestra hojas de tomate cubiertas con una capa blanquecina y polvorienta, que es un signo característico del hongo del oídio. Esta capa se extiende sobre la superficie de las hojas, afectando la capacidad de la planta para realizar la fotosíntesis. Aunque la hoja aún conserva gran parte de su color verde, la presencia del hongo es extensa y visible.",
+    "tratamiento": "Para controlar el oídio en tomates, se recomienda una combinación de prácticas culturales y fungicidas:\n\n1.  **Prácticas culturales:**\n    *   **Mejorar la circulación del aire:** Asegurar un buen espaciado entre plantas y podar las hojas inferiores o las que estén muy densas para facilitar el flujo de aire y reducir la humedad.\n    *   **Riego adecuado:** Regar las plantas por la base, evitando mojar las hojas, especialmente al final del día. La humedad prolongada en las hojas favorece el desarrollo del hongo.\n    *   **Sanidad:** Retirar y destruir las hojas y partes de la planta más afectadas para reducir la fuente de inóculo.\n    *   **Nutrición equilibrada:** Evitar el exceso de nitrógeno, que puede promover un crecimiento tierno y susceptible.\n\n2.  **Tratamientos orgánicos/biológicos:**\n    *   **Azufre mojable:** Aplicaciones de azufre pueden ser muy efectivas, especialmente en las primeras etapas de la enfermedad. Seguir las instrucciones del fabricante y evitar aplicar en días de altas temperaturas.\n    *   **Aceite de Neem:** Tiene propiedades antifúngicas y puede ser aplicado como preventivo o en fases iniciales.\n    *   **Bicarbonato de potasio:** Una solución de bicarbonato de potasio (aproximadamente 5-10 gramos por litro de agua con un poco de jabón potásico como adherente) puede ayudar a alterar el pH de la superficie de la hoja, inhibiendo el crecimiento del hongo.\n\n3.  **Tratamientos químicos (fungicidas):**\n    *   En casos de severidad moderada a grave, o cuando las opciones orgánicas no son suficientes, se pueden utilizar fungicidas específicos para oídio. Buscar productos con ingredientes activos como: Myclobutanil, Azoxystrobin, Propiconazole, Boscalid + Pyraclostrobin, o Trifloxystrobin.\n    *   **Rotación de ingredientes activos:** Es crucial rotar los fungicidas con diferentes modos de acción para prevenir el desarrollo de resistencia en el hongo.\n    *   **Aplicación temprana:** La eficacia de los fungicidas es mayor si se aplican al primer signo de la enfermedad.\n\nMonitorear las plantas regularmente es clave para detectar el oídio a tiempo y aplicar el tratamiento adecuado.",
+    "respuesta_ia": "{'es_valida': True, 'enfermedad': 'Oídio (Powdery Mildew)', 'severidad': 'moderado', 'confianza': 0.95, 'sintomas': 'La imagen muestra hojas de tomate cubiertas con una capa blanquecina y polvorienta, que es un signo característico del hongo del oídio. Esta capa se extiende sobre la superficie de las hojas, afectando la capacidad de la planta para realizar la fotosíntesis. Aunque la hoja aún conserva gran parte de su color verde, la presencia del hongo es extensa y visible.', 'tratamiento': 'Para controlar el oídio en tomates, se recomienda una combinación de prácticas culturales y fungicidas:\\n\\n1.  **Prácticas culturales:**\\n    *   **Mejorar la circulación del aire:** Asegurar un buen espaciado entre plantas y podar las hojas inferiores o las que estén muy densas para facilitar el flujo de aire y reducir la humedad.\\n    *   **Riego adecuado:** Regar las plantas por la base, evitando mojar las hojas, especialmente al final del día. La humedad prolongada en las hojas favorece el desarrollo del hongo.\\n    *   **Sanidad:** Retirar y destruir las hojas y partes de la planta más afectadas para reducir la fuente de inóculo.\\n    *   **Nutrición equilibrada:** Evitar el exceso de nitrógeno, que puede promover un crecimiento tierno y susceptible.\\n\\n2.  **Tratamientos orgánicos/biológicos:**\\n    *   **Azufre mojable:** Aplicaciones de azufre pueden ser muy efectivas, especialmente en las primeras etapas de la enfermedad. Seguir las instrucciones del fabricante y evitar aplicar en días de altas temperaturas.\\n    *   **Aceite de Neem:** Tiene propiedades antifúngicas y puede ser aplicado como preventivo o en fases iniciales.\\n    *   **Bicarbonato de potasio:** Una solución de bicarbonato de potasio (aproximadamente 5-10 gramos por litro de agua con un poco de jabón potásico como adherente) puede ayudar a alterar el pH de la superficie de la hoja, inhibiendo el crecimiento del hongo.\\n\\n3.  **Tratamientos químicos (fungicidas):**\\n    *   En casos de severidad moderada a grave, o cuando las opciones orgánicas no son suficientes, se pueden utilizar fungicidas específicos para oídio. Buscar productos con ingredientes activos como: Myclobutanil, Azoxystrobin, Propiconazole, Boscalid + Pyraclostrobin, o Trifloxystrobin.\\n    *   **Rotación de ingredientes activos:** Es crucial rotar los fungicidas con diferentes modos de acción para prevenir el desarrollo de resistencia en el hongo.\\n    *   **Aplicación temprana:** La eficacia de los fungicidas es mayor si se aplican al primer signo de la enfermedad.\\n\\nMonitorear las plantas regularmente es clave para detectar el oídio a tiempo y aplicar el tratamiento adecuado.'}",
+    "confianza_ia": 0.95,
+    "fecha_consulta": "2026-07-01T02:50:58.209Z",
+    "es_valida": true
+  }
+},
+{
+  "model": "diagnostico.diagnostico",
+  "pk": 15,
+  "fields": {
+    "usuario": [
+      "raulito@icatom.com"
+    ],
+    "sector": 3,
+    "enfermedad": 6,
+    "imagen": "diagnosticos/images_3.jfif",
+    "severidad": "grave",
+    "sintomas": "La imagen muestra una hoja de tomate con grandes lesiones irregulares de color marrón oscuro a negro, de aspecto húmedo y necrótico, que se extienden significativamente sobre la superficie de la hoja. Se observa un crecimiento algodonoso blanco distintivo en los bordes de las lesiones y en la parte inferior de la hoja, lo cual es indicativo de la esporulación del patógeno. La hoja presenta deformación y un aspecto marchito en las áreas afectadas.",
+    "tratamiento": "El tratamiento para el Tizón Tardío requiere una acción rápida y un enfoque integrado:\n1.  **Eliminación de material infectado:** Retirar y destruir inmediatamente las hojas, tallos o plantas gravemente afectadas para reducir la fuente de inóculo. No compostar los restos vegetales infectados.\n2.  **Manejo cultural:** Mejorar la ventilación en el cultivo mediante podas adecuadas y un espaciamiento correcto entre plantas. Evitar el riego por aspersión; se recomienda el riego por goteo para mantener el follaje seco. Controlar las malezas que puedan actuar como hospederos.\n3.  **Aplicación de fungicidas:** Utilizar fungicidas sistémicos y de contacto, alternando los ingredientes activos para prevenir el desarrollo de resistencias. Productos con ingredientes como cymoxanil, dimetomorf, propamocarb, fenamidona (para control curativo/preventivo) o clorotalonil, mancozeb, productos cúpricos (para control preventivo/contacto) son comunes. Siempre seguir las recomendaciones del fabricante y las regulaciones locales.\n4.  **Monitoreo constante:** Inspeccionar regularmente las plantas, especialmente en periodos de alta humedad y temperaturas moderadas (entre 10-25°C), que son condiciones óptimas para el desarrollo de la enfermedad.\n5.  **Variedades resistentes:** Considerar la siembra de variedades de tomate que ofrezcan resistencia genética al Tizón Tardío en ciclos de cultivo futuros.",
+    "respuesta_ia": "{'es_valida': True, 'enfermedad': 'Tizón Tardío (Late Blight)', 'severidad': 'grave', 'confianza': 0.95, 'sintomas': 'La imagen muestra una hoja de tomate con grandes lesiones irregulares de color marrón oscuro a negro, de aspecto húmedo y necrótico, que se extienden significativamente sobre la superficie de la hoja. Se observa un crecimiento algodonoso blanco distintivo en los bordes de las lesiones y en la parte inferior de la hoja, lo cual es indicativo de la esporulación del patógeno. La hoja presenta deformación y un aspecto marchito en las áreas afectadas.', 'tratamiento': 'El tratamiento para el Tizón Tardío requiere una acción rápida y un enfoque integrado:\\n1.  **Eliminación de material infectado:** Retirar y destruir inmediatamente las hojas, tallos o plantas gravemente afectadas para reducir la fuente de inóculo. No compostar los restos vegetales infectados.\\n2.  **Manejo cultural:** Mejorar la ventilación en el cultivo mediante podas adecuadas y un espaciamiento correcto entre plantas. Evitar el riego por aspersión; se recomienda el riego por goteo para mantener el follaje seco. Controlar las malezas que puedan actuar como hospederos.\\n3.  **Aplicación de fungicidas:** Utilizar fungicidas sistémicos y de contacto, alternando los ingredientes activos para prevenir el desarrollo de resistencias. Productos con ingredientes como cymoxanil, dimetomorf, propamocarb, fenamidona (para control curativo/preventivo) o clorotalonil, mancozeb, productos cúpricos (para control preventivo/contacto) son comunes. Siempre seguir las recomendaciones del fabricante y las regulaciones locales.\\n4.  **Monitoreo constante:** Inspeccionar regularmente las plantas, especialmente en periodos de alta humedad y temperaturas moderadas (entre 10-25°C), que son condiciones óptimas para el desarrollo de la enfermedad.\\n5.  **Variedades resistentes:** Considerar la siembra de variedades de tomate que ofrezcan resistencia genética al Tizón Tardío en ciclos de cultivo futuros.'}",
+    "confianza_ia": 0.95,
+    "fecha_consulta": "2026-07-01T02:54:27.064Z",
+    "es_valida": true
+  }
+},
+{
+  "model": "diagnostico.diagnostico",
+  "pk": 17,
+  "fields": {
+    "usuario": [
+      "raulito@icatom.com"
+    ],
+    "sector": 1,
+    "enfermedad": 7,
+    "imagen": "diagnosticos/images_5.jfif",
+    "severidad": "moderado",
+    "sintomas": "La imagen muestra el envés de una hoja de tomate con múltiples manchas irregulares de color marrón-oxidado, de apariencia aterciopelada o algodonosa, que cubren una parte significativa de la superficie. Estas lesiones son características de la esporulación del hongo, y en el haz de la hoja suelen corresponder con manchas amarillentas.",
+    "tratamiento": "Para el manejo del Moho de la hoja de tomate, se recomiendan las siguientes medidas: 1. Prácticas culturales: Mejorar la ventilación en el cultivo, especialmente en invernaderos, para reducir la humedad ambiental. Evitar el riego por aspersión para mantener las hojas secas. Eliminar y destruir las hojas y plantas severamente infectadas. Rotar cultivos y utilizar variedades de tomate resistentes al moho de la hoja. 2. Control químico: En casos de infección moderada, se pueden aplicar fungicidas protectores como los basados en clorotalonil, mancozeb o productos cúpricos de forma preventiva. Para infecciones ya establecidas, fungicidas sistémicos pueden ser necesarios, siempre respetando las dosis y periodos de seguridad recomendados por el fabricante y las regulaciones locales.",
+    "respuesta_ia": "{'es_valida': True, 'enfermedad': 'Moho de la hoja (Passalora fulva)', 'severidad': 'moderado', 'confianza': 0.9, 'sintomas': 'La imagen muestra el envés de una hoja de tomate con múltiples manchas irregulares de color marrón-oxidado, de apariencia aterciopelada o algodonosa, que cubren una parte significativa de la superficie. Estas lesiones son características de la esporulación del hongo, y en el haz de la hoja suelen corresponder con manchas amarillentas.', 'tratamiento': 'Para el manejo del Moho de la hoja de tomate, se recomiendan las siguientes medidas: 1. Prácticas culturales: Mejorar la ventilación en el cultivo, especialmente en invernaderos, para reducir la humedad ambiental. Evitar el riego por aspersión para mantener las hojas secas. Eliminar y destruir las hojas y plantas severamente infectadas. Rotar cultivos y utilizar variedades de tomate resistentes al moho de la hoja. 2. Control químico: En casos de infección moderada, se pueden aplicar fungicidas protectores como los basados en clorotalonil, mancozeb o productos cúpricos de forma preventiva. Para infecciones ya establecidas, fungicidas sistémicos pueden ser necesarios, siempre respetando las dosis y periodos de seguridad recomendados por el fabricante y las regulaciones locales.'}",
+    "confianza_ia": 0.9,
+    "fecha_consulta": "2026-07-01T02:57:13.988Z",
+    "es_valida": true
+  }
+},
+{
+  "model": "diagnostico.diagnostico",
+  "pk": 18,
+  "fields": {
+    "usuario": [
+      "curwen@icatom.com"
+    ],
+    "sector": 3,
+    "enfermedad": 8,
+    "imagen": "diagnosticos/images_6.jfif",
+    "severidad": "grave",
+    "sintomas": "La hoja de tomate presenta grandes lesiones necróticas de color marrón oscuro a negro, irregulares y de rápido avance. Las lesiones se observan principalmente en los bordes y las venas de la hoja, expandiéndose hacia el centro. Las áreas afectadas muestran un tejido colapsado y descompuesto. Aunque no se distingue claramente el crecimiento algodonoso en el envés, la morfología y la extensión de las lesiones son altamente indicativas de Tizón Tardío. La necrosis es severa y abarca una parte significativa de la superficie foliar.",
+    "tratamiento": "Dado el nivel grave de la enfermedad, se requiere una intervención rápida y enérgica. Primero, es fundamental eliminar y destruir de forma segura todas las partes de la planta visiblemente afectadas y cualquier resto de cultivo para reducir la fuente de inóculo. Se deben mejorar las condiciones de ventilación en el cultivo y evitar el riego por aspersión, optando por métodos que no mojen el follaje (ej. riego por goteo) para reducir la humedad. Para el control químico, se recomienda la aplicación inmediata de fungicidas sistémicos con efecto curativo. Ingredientes activos como el Propamocarb, Dimethomorph, Fenamidone, o combinaciones de Famoxadone + Cymoxanil son efectivos contra Phytophthora infestans. Es crucial alternar grupos de fungicidas con diferentes modos de acción para prevenir el desarrollo de resistencia. Se debe monitorear la plantación de cerca y considerar aplicaciones preventivas en las plantas adyacentes si las condiciones ambientales son favorables para la enfermedad (temperaturas moderadas y alta humedad).",
+    "respuesta_ia": "{'es_valida': True, 'enfermedad': 'Tizón Tardío (Phytophthora infestans)', 'severidad': 'grave', 'confianza': 0.95, 'sintomas': 'La hoja de tomate presenta grandes lesiones necróticas de color marrón oscuro a negro, irregulares y de rápido avance. Las lesiones se observan principalmente en los bordes y las venas de la hoja, expandiéndose hacia el centro. Las áreas afectadas muestran un tejido colapsado y descompuesto. Aunque no se distingue claramente el crecimiento algodonoso en el envés, la morfología y la extensión de las lesiones son altamente indicativas de Tizón Tardío. La necrosis es severa y abarca una parte significativa de la superficie foliar.', 'tratamiento': 'Dado el nivel grave de la enfermedad, se requiere una intervención rápida y enérgica. Primero, es fundamental eliminar y destruir de forma segura todas las partes de la planta visiblemente afectadas y cualquier resto de cultivo para reducir la fuente de inóculo. Se deben mejorar las condiciones de ventilación en el cultivo y evitar el riego por aspersión, optando por métodos que no mojen el follaje (ej. riego por goteo) para reducir la humedad. Para el control químico, se recomienda la aplicación inmediata de fungicidas sistémicos con efecto curativo. Ingredientes activos como el Propamocarb, Dimethomorph, Fenamidone, o combinaciones de Famoxadone + Cymoxanil son efectivos contra Phytophthora infestans. Es crucial alternar grupos de fungicidas con diferentes modos de acción para prevenir el desarrollo de resistencia. Se debe monitorear la plantación de cerca y considerar aplicaciones preventivas en las plantas adyacentes si las condiciones ambientales son favorables para la enfermedad (temperaturas moderadas y alta humedad).'}",
+    "confianza_ia": 0.95,
+    "fecha_consulta": "2026-07-01T02:59:48.647Z",
+    "es_valida": true
+  }
+},
+{
+  "model": "diagnostico.diagnostico",
+  "pk": 21,
+  "fields": {
+    "usuario": [
+      "admin@icatom.com"
+    ],
+    "sector": 2,
+    "enfermedad": 4,
+    "imagen": "diagnosticos/early-blight-tomato-1550839948.jpg",
+    "severidad": "moderado",
+    "sintomas": "Se observan numerosas manchas foliares de tamaño variable, de color marrón oscuro a negro, dispersas por toda la superficie de la hoja. Algunas de estas manchas presentan halos amarillentos y zonas necróticas que sugieren un daño avanzado. La hoja muestra clorosis (amarillamiento) generalizada, especialmente alrededor de las lesiones, indicando un estrés significativo en la planta. La apariencia general es de una enfermedad fúngica que progresa.",
+    "tratamiento": "Para el manejo del Tizón Temprano, se recomienda: 1. **Eliminación de hojas afectadas:** Podar y destruir las hojas y restos de plantas que presenten síntomas para reducir el inóculo. 2. **Mejora de la circulación de aire:** Asegurar un buen espaciamiento entre plantas y podar las ramas bajas para facilitar la ventilación. 3. **Riego adecuado:** Regar la planta directamente en la base, evitando mojar las hojas, preferiblemente por la mañana para permitir que el follaje se seque. 4. **Aplicación de fungicidas:** En casos de severidad moderada, se pueden aplicar fungicidas sistémicos o de contacto. Ingredientes activos como Clorotalonil, Mancozeb, Azoxystrobin o Difenoconazol son efectivos. Se debe seguir estrictamente las instrucciones del fabricante en cuanto a dosis y frecuencia de aplicación. 5. **Rotación de cultivos:** Si la planta está en tierra, se aconseja rotar los cultivos en el futuro para evitar la acumulación de patógenos en el suelo.",
+    "respuesta_ia": "{'es_valida': True, 'enfermedad': 'Tizón Temprano (Alternaria solani)', 'severidad': 'moderado', 'confianza': 0.9, 'sintomas': 'Se observan numerosas manchas foliares de tamaño variable, de color marrón oscuro a negro, dispersas por toda la superficie de la hoja. Algunas de estas manchas presentan halos amarillentos y zonas necróticas que sugieren un daño avanzado. La hoja muestra clorosis (amarillamiento) generalizada, especialmente alrededor de las lesiones, indicando un estrés significativo en la planta. La apariencia general es de una enfermedad fúngica que progresa.', 'tratamiento': 'Para el manejo del Tizón Temprano, se recomienda: 1. **Eliminación de hojas afectadas:** Podar y destruir las hojas y restos de plantas que presenten síntomas para reducir el inóculo. 2. **Mejora de la circulación de aire:** Asegurar un buen espaciamiento entre plantas y podar las ramas bajas para facilitar la ventilación. 3. **Riego adecuado:** Regar la planta directamente en la base, evitando mojar las hojas, preferiblemente por la mañana para permitir que el follaje se seque. 4. **Aplicación de fungicidas:** En casos de severidad moderada, se pueden aplicar fungicidas sistémicos o de contacto. Ingredientes activos como Clorotalonil, Mancozeb, Azoxystrobin o Difenoconazol son efectivos. Se debe seguir estrictamente las instrucciones del fabricante en cuanto a dosis y frecuencia de aplicación. 5. **Rotación de cultivos:** Si la planta está en tierra, se aconseja rotar los cultivos en el futuro para evitar la acumulación de patógenos en el suelo.'}",
+    "confianza_ia": 0.9,
+    "fecha_consulta": "2026-07-02T04:36:35.126Z",
+    "es_valida": true
+  }
+}
+]
